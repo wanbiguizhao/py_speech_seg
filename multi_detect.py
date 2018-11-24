@@ -18,7 +18,7 @@ last_point=0
 for x in seg_point:
     segment=song[last_point:x*1000]
     last_point=x*1000
-    sonsegmentg.export(str(x*1000)+".wav",format="wav")
+    segment.export(str(x*1000)+".wav",format="wav")
 
 
 
