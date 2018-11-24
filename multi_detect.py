@@ -17,7 +17,7 @@ song=AudioSegment.from_mp3("tingvoa.com_02.mp3")
 i=1
 beg_point=0
 for x in seg_point:
-    end_point=x*1000
+    end_point=int(x*1000)
     segment=song[beg_point:end_point]
     segment.export("save_audio/{:0>2d}_{:0>7d}_{:0>7d}_".format(i,beg_point,end_point)+".mp3",format="mp3")
     beg_point=end_point
