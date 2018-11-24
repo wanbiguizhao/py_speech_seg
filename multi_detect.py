@@ -12,6 +12,15 @@ seg_point = seg.multi_segmentation("duihua_sample.wav", sr, frame_size, frame_sh
 print('The segmentation point for this audio file is listed (Unit: /s)',seg_point)
 
 
+from pydub import AudioSegment
+song=AudioSegment.from_wav("duihua_sample.wav")
+last_point=0
+for x in seg_point:
+    segment=song[last_point:x*1000]
+    last_point=x*1000
+    sonsegmentg.export(str(x*1000)+".wav",format="wav")
+
+
 
 
 
