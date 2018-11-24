@@ -7,7 +7,7 @@ frame_size = 500
 frame_shift = 300
 sr = None
 
-seg_point = seg.multi_segmentation("tingvoa.com_02.mp3", sr, frame_size, frame_shift, plot_seg=True, save_seg=True,
+seg_point = seg.multi_segmentation("tingvoa.com_02.mp3", sr, frame_size, frame_shift, plot_seg=True, save_seg=False,
                                    cluster_method='bic')
 print('The segmentation point for this audio file is listed (Unit: /s)',seg_point)
 
