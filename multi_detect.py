@@ -15,12 +15,16 @@ print('The segmentation point for this audio file is listed (Unit: /s)',seg_poin
 from pydub import AudioSegment
 song=AudioSegment.from_mp3("tingvoa.com_02.mp3")
 i=1
-last_point=0
+beg_point=0
 for x in seg_point:
-    segment=song[last_point:x*1000]
-    last_point=x*1000
-    segment.export("save_audio/{:0>2d}".format(i)+"_"+str(x*1000)+".mp3",format="mp3")
+    end_point=x*1000
+    segment=song[last_point:end_point]
+    segment.export("save_audio/{:0>2d}_{:0>7d}_{:0>7d}_".format(i,beg_point,last_point)+".mp3",format="mp3")
+    beg_point=end_point
     i=i+1
+segment=song[end_point:]
+segment.export("save_audio/{:0>2d}_{:0>7d}_{:0>7d}_".format(i,beg_point,len(segment))+".mp3",format="mp3")
+
 
 
 
