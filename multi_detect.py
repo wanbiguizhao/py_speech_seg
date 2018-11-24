@@ -19,11 +19,11 @@ beg_point=0
 for x in seg_point:
     end_point=int(x*1000)
     segment=song[beg_point:end_point]
-    segment.export("save_audio/{:0>2d}_{:0>7d}_{:0>7d}_".format(i,beg_point,end_point)+".mp3",format="mp3")
+    segment.export("save_audio/{:0>2d}_{:0>6d}_{:0>6d}_".format(i,beg_point,end_point)+".mp3",format="mp3")
     beg_point=end_point
     i=i+1
 segment=song[end_point:]
-segment.export("save_audio/{:0>2d}_{:0>7d}_{:0>7d}_".format(i,beg_point,len(segment))+".mp3",format="mp3")
+segment.export("save_audio/{:0>2d}_{:0>6d}_{:0>6d}_".format(i,beg_point,len(segment))+".mp3",format="mp3")
 
 
 
