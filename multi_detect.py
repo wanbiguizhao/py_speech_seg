@@ -3,8 +3,8 @@
 from __future__ import print_function
 import speech_segmentation as seg
 
-frame_size = 512
-frame_shift = 256
+frame_size = 500
+frame_shift = 300
 sr = None
 
 seg_point = seg.multi_segmentation("tingvoa.com_02.mp3", sr, frame_size, frame_shift, plot_seg=True, save_seg=True,
