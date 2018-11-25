@@ -11,7 +11,7 @@ def segment_mp3_file(filepath,filename):
     filename 文件的名称不包含类型名（.mp3）
     """
     frame_size = 500
-    frame_shift = 300
+    frame_shift = 250
     sr = None
     seg_point = seg.multi_segmentation(filepath, sr, frame_size, frame_shift, plot_seg=False, save_seg=False,
                                     cluster_method='bic')
@@ -27,10 +27,8 @@ def segment_mp3_file(filepath,filename):
     for x in seg_point:
         end_point=int(x*1000)
         seg_len_list.append([end_point-beg_point,beg_point,end_point])
-        segment=song[beg_point+pianyi:end_point+pianyi]
         beg_point=end_point
         i=i+1
-    segment=song[end_point:]
     seg_len_list.append([len(song)-beg_point,beg_point,len(song)])#三元组数据,时间长短，开始时间，结束时间
     #segment.export("save_audio_mp3/"+filename+"_{:0>2d}_{:0>3d}_{:0>6d}_{:0>6d}_".format(i,int((end_point-beg_point)/100),beg_point+pianyi,end_point+pianyi)+".mp3",format="mp3")
     #segment.export("save_audio_mp3/"+filename+"_{:0>2d}_{:0>3d}_{:0>6d}_{:0>6d}_".format(i,int((len(song)-beg_point)/100),beg_point+pianyi,len(song))+".mp3",format="mp3")
@@ -40,12 +38,13 @@ def segment_mp3_file(filepath,filename):
     for x in seg_len_list:
         if need_merge:
             merge_seg_list[-1][0]=x[0]+merge_seg_list[-1][0]
-            merge_seg_list[-1][-1]=merge_seg_list[-1][-1]
+            merge_seg_list[-1][-1]=x[-1]
             need_merge=False
         else:
-            if x[0]<5500:
+            if x[0]<4200:
                 need_merge=True
             merge_seg_list.append(x)
+    print(len(merge_seg_list))
     save_seg_mp3(song,filename,merge_seg_list)
     return merge_seg_list
     
